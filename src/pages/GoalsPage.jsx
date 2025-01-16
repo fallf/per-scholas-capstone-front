@@ -3,6 +3,12 @@ import axios from "axios";
 
 function GoalsPage() {
   const [goal, setGoal] = useState([]);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    enum: ["Completed", "Pending", "In-progress"],
+  });
+
   const LOCAL_URL = "http://localhost:5020";
 
   const getGoal = async () => {
@@ -56,7 +62,14 @@ function GoalsPage() {
   return (
     <>
       <h1>My goals</h1>
-      {goal.length ? loaded() : loading()}
+
+      <div>
+        <div>
+          <h2>Enter My goals</h2>
+          <form action=""></form>
+        </div>
+        <div>{goal.length ? loaded() : loading()}</div>
+      </div>
     </>
   );
 }

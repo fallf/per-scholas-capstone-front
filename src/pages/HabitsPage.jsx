@@ -2,61 +2,105 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function HabitsPage() {
-  const [habit, setHabit] = useState([]);
+  const [habits, setHabits] = useState([]);
+  const [newHabit, setNewHabit] = useState({
+    name: "",
+    frequency: "daily",
+    due: "",
+  });
   const LOCAL_URL = "http://localhost:5020";
 
-  const getHabits = async () => {
-    console.log("gethabit called");
+  const fetchHabits = async () => {
     try {
       const response = await axios.get(`${LOCAL_URL}/api/habit`);
-      console.log("Response data:", response.data);
-      setHabit(response.data);
-      console.log("State updated:", response.data);
+      setHabits(response.data);
     } catch (err) {
-      console.error("Error fetching habit:", err);
+      console.error("Error fetching habits:", err);
+    }
+  };
+
+  const addHabit = async () => {
+    try {
+      const response = await axios.post(`${LOCAL_URL}/api/habit`, newHabit);
+      setHabits([...habits, response.data]);
+      setNewHabit({ name: "", frequency: "daily", due: "" });
+    } catch (err) {
+      console.error("Error adding habit:", err);
+    }
+  };
+
+  const deleteHabit = async (id) => {
+    try {
+      await axios.delete(`${LOCAL_URL}/api/habit/${id}`);
+      setHabits(habits.filter((habit) => habit._id !== id));
+    } catch (err) {
+      console.error("Error deleting habit:", err);
+    }
+  };
+
+  const toggleComplete = async (id, completed) => {
+    try {
+      const response = await axios.patch(`${LOCAL_URL}/api/habit/${id}`, {
+        completed: !completed,
+      });
+      setHabits(
+        habits.map((habit) => (habit._id === id ? response.data : habit))
+      );
+    } catch (err) {
+      console.error("Error updating habit:", err);
     }
   };
 
   useEffect(() => {
-    getHabits();
+    fetchHabits();
   }, []);
 
-  const loaded = () => {
-    console.log("Rendering loaded component with data:", habit);
-    return (
-      <ul
-        style={{
-          listStyleType: "none",
-          display: "flex",
-          flexDirection: "column",
+  return (
+    <div>
+      <h1>My Habits</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addHabit();
         }}
       >
-        {habit.map((entry, index) => {
-          console.log("Entry being rendered:", entry);
-          return (
-            <li
-              key={entry.id || index}
-              style={{ display: "block", width: "80%", color: "black" }}
-            >
-              {entry.name} : {entry.frequency} <br />
-              {entry.status} <br /> {entry.completed} <br /> <b>{entry.due}</b>
-            </li>
-          );
-        })}
+        <input
+          type="text"
+          placeholder="Habit Name"
+          value={newHabit.name}
+          onChange={(e) => setNewHabit({ ...newHabit, name: e.target.value })}
+          required
+        />
+        <select
+          value={newHabit.frequency}
+          onChange={(e) =>
+            setNewHabit({ ...newHabit, frequency: e.target.value })
+          }
+        >
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+        <input
+          type="date"
+          value={newHabit.due}
+          onChange={(e) => setNewHabit({ ...newHabit, due: e.target.value })}
+        />
+        <button type="submit">Add Habit</button>
+      </form>
+      <ul>
+        {habits.map((habit) => (
+          <li key={habit._id}>
+            {habit.name} ({habit.frequency}) -{" "}
+            {habit.due && new Date(habit.due).toLocaleDateString()}
+            <button onClick={() => toggleComplete(habit._id, habit.completed)}>
+              {habit.completed ? "Mark Incomplete" : "Mark Complete"}
+            </button>
+            <button onClick={() => deleteHabit(habit._id)}>Delete</button>
+          </li>
+        ))}
       </ul>
-    );
-  };
-
-  const loading = () => {
-    console.log("Rendering loading component");
-    return <h3>There doesn't seem to be a habit yet...</h3>;
-  };
-
-  return (
-    <>
-      <h1>My Habits</h1>
-      {habit.length ? loaded() : loading()}
-    </>
+    </div>
   );
 }
 
