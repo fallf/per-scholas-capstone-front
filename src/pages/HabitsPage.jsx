@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../public/styles/HabitsPage.css";
 
 function HabitsPage() {
   const [habits, setHabits] = useState([]);
-  const [newHabit, setNewHabit] = useState({
+  const [formHabit, setFormHabit] = useState({
     name: "",
     frequency: "daily",
     due: "",
   });
+  const [editingHabitId, setEditingHabitId] = useState(null);
   const LOCAL_URL = "http://localhost:5020";
 
   const fetchHabits = async () => {
@@ -19,13 +21,26 @@ function HabitsPage() {
     }
   };
 
-  const addHabit = async () => {
+  const saveHabit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post(`${LOCAL_URL}/api/habit`, newHabit);
-      setHabits([...habits, response.data]);
-      setNewHabit({ name: "", frequency: "daily", due: "" });
+      if (editingHabitId) {
+        const response = await axios.put(
+          `${LOCAL_URL}/api/habit/${editingHabitId}`,
+          formHabit
+        );
+        setHabits(
+          habits.map((habit) =>
+            habit._id === editingHabitId ? response.data : habit
+          )
+        );
+      } else {
+        const response = await axios.post(`${LOCAL_URL}/api/habit`, formHabit);
+        setHabits([...habits, response.data]);
+      }
+      resetForm();
     } catch (err) {
-      console.error("Error adding habit:", err);
+      console.error("Error saving habit:", err);
     }
   };
 
@@ -38,17 +53,31 @@ function HabitsPage() {
     }
   };
 
-  const toggleComplete = async (id, completed) => {
+  const toggleComplete = async (id, currentCompleted) => {
     try {
       const response = await axios.patch(`${LOCAL_URL}/api/habit/${id}`, {
-        completed: !completed,
+        completed: !currentCompleted,
       });
       setHabits(
-        habits.map((habit) => (habit._id === id ? response.data : habit))
+        habits.map((habit) =>
+          habit._id === id
+            ? { ...habit, completed: response.data.completed }
+            : habit
+        )
       );
     } catch (err) {
-      console.error("Error updating habit:", err);
+      console.error("Error toggling complete:", err);
     }
+  };
+
+  const startEditing = (habit) => {
+    setFormHabit({ ...habit });
+    setEditingHabitId(habit._id);
+  };
+
+  const resetForm = () => {
+    setFormHabit({ name: "", frequency: "daily", due: "" });
+    setEditingHabitId(null);
   };
 
   useEffect(() => {
@@ -57,24 +86,21 @@ function HabitsPage() {
 
   return (
     <div>
-      <h1>My Habits</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addHabit();
-        }}
-      >
+      <h1 className="habitTitle">My Habits</h1>
+      <form className="habitForm" onSubmit={saveHabit}>
         <input
+          className="inputHabit"
           type="text"
           placeholder="Habit Name"
-          value={newHabit.name}
-          onChange={(e) => setNewHabit({ ...newHabit, name: e.target.value })}
+          value={formHabit.name}
+          onChange={(e) => setFormHabit({ ...formHabit, name: e.target.value })}
           required
         />
         <select
-          value={newHabit.frequency}
+          className="selectHabit"
+          value={formHabit.frequency}
           onChange={(e) =>
-            setNewHabit({ ...newHabit, frequency: e.target.value })
+            setFormHabit({ ...formHabit, frequency: e.target.value })
           }
         >
           <option value="daily">Daily</option>
@@ -83,20 +109,33 @@ function HabitsPage() {
         </select>
         <input
           type="date"
-          value={newHabit.due}
-          onChange={(e) => setNewHabit({ ...newHabit, due: e.target.value })}
+          value={formHabit.due}
+          onChange={(e) => setFormHabit({ ...formHabit, due: e.target.value })}
         />
-        <button type="submit">Add Habit</button>
+        <button type="submit">
+          {editingHabitId ? "Save Changes" : "Add Habit"}
+        </button>
+        {editingHabitId && (
+          <button type="button" onClick={resetForm}>
+            Cancel
+          </button>
+        )}
       </form>
-      <ul>
+      <ul className="habitUl">
         {habits.map((habit) => (
-          <li key={habit._id}>
+          <li className="habitLi" key={habit._id}>
             {habit.name} ({habit.frequency}) -{" "}
             {habit.due && new Date(habit.due).toLocaleDateString()}
-            <button onClick={() => toggleComplete(habit._id, habit.completed)}>
-              {habit.completed ? "Mark Incomplete" : "Mark Complete"}
-            </button>
-            <button onClick={() => deleteHabit(habit._id)}>Delete</button>
+            {/* <input
+              type="checkbox"
+              checked={habit.completed}
+              onChange={() => toggleComplete(habit._id, habit.completed)}
+            /> */}
+            <input className="checkbox" type="checkbox" />
+            <div class="buttonContainer">
+              <button onClick={() => startEditing(habit)}>Edit</button>
+              <button onClick={() => deleteHabit(habit._id)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>

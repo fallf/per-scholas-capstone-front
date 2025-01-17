@@ -1,0 +1,168 @@
+/* Importing Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Title Styling */
+.habitTitle {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: #ff61a6;
+  font-family: "Lobster", cursive;
+  text-align: center;
+}
+
+/* Form Styling */
+.habitForm {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Input and Select Styling */
+.inputHabit,
+.selectHabit,
+.habitForm input[type="date"] {
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  border: 1px solid #f9c8d6;
+  border-radius: 25px;
+  background-color: #ffeef3;
+  color: #9b3d44;
+  box-shadow: 0 4px 6px rgba(255, 182, 193, 0.4);
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Focus State for Inputs and Select */
+.inputHabit:focus,
+.selectHabit:focus,
+.habitForm input[type="date"]:focus {
+  outline: none;
+  border-color: #ff85b3;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.6);
+}
+
+/* Button Styling */
+.habitForm button {
+  padding: 0.6rem 1.4rem;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #ff85b3;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.4);
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Button Hover State */
+.habitForm button:hover {
+  background-color: #ff6380;
+  box-shadow: 0 4px 8px rgba(255, 20, 147, 0.5);
+}
+
+/* Habit List Styling */
+.habitUl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 1.5rem;
+  margin: 0;
+}
+
+/* Individual Habit Item Styling */
+.habitLi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f0c9d6;
+  padding: 2rem;
+  border-radius: 25px;
+  background-color: #f4d1ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #4b0032;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* Habit Item Hover State */
+.habitLi:hover {
+  background-color: #f9e0f4;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Container for Each Habit */
+.habitLi .buttonContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Buttons for Editing and Deleting Habit */
+.habitLi button {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #ff61a6;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  width: auto;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.3);
+}
+
+/* Button Hover State for Habit Buttons */
+.habitLi button:hover {
+  background-color: #ff4981;
+  box-shadow: 0 4px 8px rgba(255, 20, 147, 0.4);
+}
+
+/* Custom Checkbox Styling */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid #f0c1f2;
+  background-color: #ffeef3;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Checkbox Checked State */
+.checkbox:checked {
+  background-color: #ff61a6;
+  border-color: #ff61a6;
+}
+
+/* Focus State for Checkbox */
+.checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .habitUl {
+    grid-template-columns: 1fr;
+  }
+
+  .habitForm {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .habitTitle {
+    font-size: 2.2rem;
+  }
+
+  .habitForm button {
+    width: 100%;
+  }
+}

@@ -16,8 +16,8 @@ function App() {
       {user ? (
         <>
           <Nav />
-          <h1>Best version of you</h1>
-          <h2>Hi {user}</h2>
+          <h1 className="titlemainpage">Best version of you</h1>
+          <h2 className="helloToTheUser">Hi {user}</h2>
           <Routes>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/budget" element={<BudgetPage />} />
