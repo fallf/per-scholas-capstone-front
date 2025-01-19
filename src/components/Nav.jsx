@@ -1,3 +1,5 @@
+import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+
 import { Link } from "react-router";
 
 function Nav() {
@@ -14,7 +16,23 @@ function Nav() {
         &nbsp; | &nbsp;
         <Link to="/reset">Reset</Link>
       </div>
-      <div>Sign Out</div>
+      <div>
+        {" "}
+        <ul>
+          <li>
+            <Link to="/login">
+              Login
+              <FaSignInAlt />
+            </Link>
+          </li>
+          <li>
+            <Link to="/register">
+              Register
+              <FaUser />
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../public/styles/HabitsPage.css";
 
+//TODO: add to be able user authorization before doing crud
+//TODO: change displaying habits
+
 function HabitsPage() {
   const [habits, setHabits] = useState([]);
   const [formHabit, setFormHabit] = useState({
