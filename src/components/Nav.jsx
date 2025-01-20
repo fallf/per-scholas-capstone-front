@@ -20,7 +20,7 @@ function Nav() {
         {" "}
         <ul>
           <li>
-            <Link to="/login">
+            <Link to="/Autopage">
               Login
               <FaSignInAlt />
             </Link>
