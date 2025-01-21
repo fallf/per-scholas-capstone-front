@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import "../public/styles/GoalsPage.css";
+
 function GoalsPage() {
   const [goal, setGoal] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     status: "Pending",
-    due: new Date().toISOString(), // Set current date initially
+    due: "", // Allow user input for due date
   });
 
   const LOCAL_URL = "http://localhost:5020";
@@ -29,12 +31,7 @@ function GoalsPage() {
       const response = await axios.post(`${LOCAL_URL}/api/goal`, formData);
       console.log("Goal added:", response.data);
       setGoal([...goal, response.data]);
-      setFormData({
-        title: "",
-        description: "",
-        status: "Pending",
-        due: new Date().toISOString(),
-      });
+      setFormData({ title: "", description: "", status: "Pending", due: "" });
     } catch (err) {
       console.error("Error adding goal:", err);
     }
@@ -57,13 +54,7 @@ function GoalsPage() {
   const loaded = () => {
     console.log("Rendering loaded component with data:", goal);
     return (
-      <ul
-        style={{
-          listStyleType: "none",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div className="goal-list">
         {goal.map((entry) => {
           let formattedDate = "Invalid Date";
           if (entry.due) {
@@ -78,38 +69,48 @@ function GoalsPage() {
           }
           console.log("Formatted Date:", formattedDate);
           return (
-            <li
-              key={entry._id}
-              style={{ display: "block", width: "80%", color: "black" }}
-            >
+            <p key={entry._id} className="goal-item">
               <div>
-                <strong>{entry.title}</strong> <br />
+                <h2>{entry.title}</h2>
+                <br />
                 {entry.description} <br />
-                {entry.status} <br />
-                <p>made on: {formattedDate}</p>
+                <p>
+                  <b>Status:</b> {entry.status}
+                </p>{" "}
+                <p>
+                  <b>Accomplish by:</b> {formattedDate}
+                </p>
               </div>
-              <button onClick={() => deleteGoal(entry._id)}>Delete</button>
-            </li>
+              <button
+                className="delete-btn"
+                onClick={() => deleteGoal(entry._id)}
+              >
+                Delete
+              </button>
+            </p>
           );
         })}
-      </ul>
+      </div>
     );
   };
 
   const loading = () => {
     console.log("Rendering loading component");
-    return <h3>There doesn't seem to be a goal yet...</h3>;
+    return (
+      <h3 className="loading-text">There doesn't seem to be a goal yet...</h3>
+    );
   };
 
   return (
     <>
-      <h1>My Goals</h1>
+      <h1 className="page-title">My Goals</h1>
 
-      <div>
-        <h2>Enter My Goals</h2>
-        <form onSubmit={addGoal}>
+      <div className="form-container">
+        <h2 className="form-title">Enter My Goals</h2>
+        <form className="goal-form" onSubmit={addGoal}>
           <input
             type="text"
+            className="goal-input"
             placeholder="Title"
             value={formData.title}
             onChange={(e) =>
@@ -119,6 +120,7 @@ function GoalsPage() {
           />
           <br />
           <textarea
+            className="goal-textarea"
             placeholder="Description"
             value={formData.description}
             onChange={(e) =>
@@ -128,6 +130,7 @@ function GoalsPage() {
           />
           <br />
           <select
+            className="goal-select"
             value={formData.status}
             onChange={(e) =>
               setFormData({ ...formData, status: e.target.value })
@@ -137,16 +140,18 @@ function GoalsPage() {
             <option value="In-progress">In-progress</option>
             <option value="Completed">Completed</option>
           </select>
-
           <br />
           <input
             type="date"
+            className="goal-date"
             value={formData.due}
             onChange={(e) => setFormData({ ...formData, due: e.target.value })}
             required
           />
           <br />
-          <button type="submit">Add Goal</button>
+          <button type="submit" className="submit-btn">
+            Add Goal
+          </button>
         </form>
 
         <div>{goal.length ? loaded() : loading()}</div>
