@@ -1,26 +1,123 @@
-.form,
+/* General Styling */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9c8d6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
 .content {
   width: 70%;
   margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.form {
+  margin-top: 20px;
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
+  padding: 12px;
+  border: 1px solid #ffd1e8;
+  border-radius: 8px;
   margin-bottom: 10px;
-  font-family: inherit;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffeef7;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ff85b3;
+  box-shadow: 0 0 5px rgba(255, 133, 179, 0.5);
 }
 
 .form-group label {
   text-align: left;
   display: block;
   margin: 0 0 5px 3px;
+  color: #ff61a6;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Button Styling */
+.btn {
+  padding: 12px 24px;
+  border: 2px solid #ff61a6;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #ff85b3, #ff61a6);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn svg {
+  margin-right: 8px;
+}
+
+.btn-reverse {
+  background: #fff;
+  color: #ff61a6;
+  border-color: #ff85b3;
+}
+
+.btn-block {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #ff61a6, #ff85b3);
+}
+
+/* Additional Cute Details */
+input::placeholder,
+textarea::placeholder {
+  color: #ff85b3;
+  font-style: italic;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Animations for Interactivity */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(255, 97, 166, 0.3);
+}
+
+input:focus {
+  animation: glow 0.5s ease-in-out;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 133, 179, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 97, 166, 0.8);
+  }
 }

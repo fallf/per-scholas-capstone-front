@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
+import "../public/styles/loginRegister.css";
 
 function SignUpForm() {
   const [formData, setFormData] = useState({

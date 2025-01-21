@@ -12,7 +12,22 @@ function AutoPage() {
     <>
       <h1> Register or Log in</h1>
       <>{signup ? <SignUpForm /> : <LoginForm />}</>
-      <button onClick={togglePage}>{signup ? "Log In" : "Register"} </button>
+      <button
+        onClick={togglePage}
+        style={{
+          padding: "10px 20px",
+          border: "2px solid #ff61a6",
+          borderRadius: "8px",
+          backgroundColor: signup ? "#ff85b3" : "#ff61a6",
+          color: "#fff",
+          fontSize: "16px",
+          fontWeight: "bold",
+          cursor: "pointer",
+          transition: "background-color 0.3s ease",
+        }}
+      >
+        {signup ? "Log In" : "Register"}
+      </button>
     </>
   );
 }

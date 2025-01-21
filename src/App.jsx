@@ -10,7 +10,7 @@ import AutoPage from "./pages/AutoPage";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState("fatou");
+  const [user, setUser] = useState("Fatou");
   return (
     <>
       {user ? (

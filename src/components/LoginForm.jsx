@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaSignInAlt } from "react-icons/fa";
+import "../public/styles/loginRegister.css";
 function LoginForm() {
   const [formData, setFormData] = useState({
     email: "",
@@ -24,6 +25,7 @@ function LoginForm() {
         <h1>
           {" "}
           <FaSignInAlt />
+          {""}
           Login
         </h1>
         <p>Login & Set Your Life</p>
