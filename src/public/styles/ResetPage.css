@@ -1,0 +1,165 @@
+/* General page styling */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f0f4e3; /* Matcha green background */
+  color: #4f5b33; /* Darker green text */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  color: #3b5b2b; /* Darker matcha green */
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+
+/* Select Dropdown (Month) */
+.month-select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid #a6b35d;
+  background-color: #d8e1c5;
+  font-size: 1rem;
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Form Section */
+.form-header {
+  text-align: center;
+  color: #3b5b2b; /* Darker matcha green */
+  font-size: 3rem;
+  margin-top: 20px;
+}
+
+/* Form inputs and button */
+.form-input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #a6b35d; /* Matcha green border */
+  background-color: #f9f7e2; /* Light matcha green */
+  font-size: 1rem;
+  width: 80%;
+  margin: 10px auto;
+  display: block;
+  color: #4f5b33; /* Darker text for input fields */
+}
+
+/* Textarea with notebook-like style */
+textarea.form-input {
+  border: 2px solid #a6b35d; /* Matcha green border */
+  background-color: #f9f7e2; /* Light matcha green */
+  font-size: 1rem;
+  padding: 12px;
+  width: 80%;
+  margin: 10px auto;
+  display: block;
+  resize: vertical;
+  line-height: 1.5;
+  font-family: "Courier New", Courier, monospace; /* Monospaced font for that "notebook" feel */
+  white-space: pre-wrap;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    transparent 90%,
+    #d9e1b3 1px
+  ); /* Add lines like a notebook */
+  background-size: 100% 20px;
+  color: #4f5b33;
+}
+
+/* Submit button */
+.submit-btn {
+  background-color: #a6b35d; /* Soft matcha green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.submit-btn:hover {
+  background-color: #8f9a4d; /* Darker matcha green on hover */
+}
+
+/* Feedback message */
+.feedback-message {
+  background-color: #d4edda; /* Light green background */
+  color: #155724;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Reflection Entries */
+.entry-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.entry-item {
+  background-color: #eff1d7; /* Light green background for entries */
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 2px solid #a6b35d; /* Matcha green border */
+}
+
+.entry-item h4 {
+  color: #3b5b2b; /* Dark matcha green */
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.entry-item p {
+  color: #4f5b33; /* Darker green for paragraph text */
+  font-size: 1rem;
+}
+
+/* Edit & Delete Buttons */
+.edit-btn,
+.delete-btn {
+  background-color: #a6b35d; /* Matcha green */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: #8f9a4d; /* Darker matcha green on hover */
+}
+
+.delete-btn {
+  background-color: #f44336; /* Red background for delete */
+}
+
+.delete-btn:hover {
+  background-color: #e53935; /* Darker red on hover */
+}
+
+/* Loading Text */
+.loading-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #a6b35d;
+  margin-top: 50px;
+}

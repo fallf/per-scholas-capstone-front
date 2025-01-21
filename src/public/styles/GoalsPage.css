@@ -5,7 +5,7 @@
 .page-title {
   font-size: 3rem;
   margin-bottom: 2rem;
-  color: #ffcb77; /* Pastel yellow */
+  color: #ffcb77;
   font-family: "Lobster", cursive;
   text-align: center;
 }
@@ -21,7 +21,7 @@
 .form-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #ffb347; /* Soft peachy yellow */
+  color: #ffb347;
   font-family: "Poppins", sans-serif;
 }
 
@@ -159,7 +159,7 @@
 
 @media (max-width: 768px) {
   .goal-list {
-    grid-template-columns: 1fr; /* 1 item per row on small screens */
+    grid-template-columns: 1fr;
   }
 
   .goal-form {
