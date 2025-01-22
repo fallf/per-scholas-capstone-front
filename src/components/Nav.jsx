@@ -1,37 +1,32 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
-
 import { Link } from "react-router";
-
+import { FaHome } from "react-icons/fa";
+import { FaPiggyBank } from "react-icons/fa";
+import { FaBullseye } from "react-icons/fa";
+import { FaTasks } from "react-icons/fa";
+import { FaSyncAlt } from "react-icons/fa";
 function Nav() {
   return (
     <nav>
       <div>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <FaHome /> Home
+        </Link>
         &nbsp; | &nbsp;
-        <Link to="/budget">Financial Plan</Link>
+        <Link to="/budget">
+          <FaPiggyBank /> Financial Plan
+        </Link>
         &nbsp; | &nbsp;
-        <Link to="/goals">Goals</Link>
+        <Link to="/goals">
+          <FaBullseye /> Goals
+        </Link>
         &nbsp; | &nbsp;
-        <Link to="/habits">Habits</Link>
+        <Link to="/habits">
+          <FaTasks /> Habits
+        </Link>
         &nbsp; | &nbsp;
-        <Link to="/reset">Reset</Link>
-      </div>
-      <div>
-        {" "}
-        <ul>
-          <li>
-            <Link to="/Autopage">
-              Login
-              <FaSignInAlt />
-            </Link>
-          </li>
-          <li>
-            <Link to="/register">
-              Register
-              <FaUser />
-            </Link>
-          </li>
-        </ul>
+        <Link to="/reset">
+          <FaSyncAlt /> Reset
+        </Link>
       </div>
     </nav>
   );

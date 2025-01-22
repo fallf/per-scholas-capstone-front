@@ -1,0 +1,85 @@
+/* Dashboard Container Styling */
+.dashboard-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #ffe8f1;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+/* Dashboard Title Styling */
+.dashboard-title {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: #ff61a6;
+  font-family: "Lobster", cursive;
+  text-align: center;
+}
+
+/* Section Styling */
+.dashboard-section {
+  margin-bottom: 2rem;
+  background-color: #fff0f6;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.2);
+}
+
+/* Section Title Styling */
+.section-title {
+  font-size: 2rem;
+  color: #f5a9b8;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 15px;
+  border-bottom: 3px solid #ff61a6;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Section List Styling */
+.section-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+/* Section Item Styling */
+.section-item {
+  font-size: 1.4rem;
+  color: #ff61a6;
+  font-family: "Poppins", sans-serif;
+  padding: 15px;
+  background-color: #f9d7e0;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.2);
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.section-item:hover {
+  background-color: #ffd1dc;
+  color: #fff;
+  box-shadow: 0px 6px 12px rgba(255, 105, 180, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 2.2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-item {
+    font-size: 1.2rem;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../public/styles/DashboardPage.css";
 
 function DashboardPage() {
   const [reset, setReset] = useState([]);
@@ -34,47 +35,47 @@ function DashboardPage() {
   }, []);
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <section>
-        <h2>Reset</h2>
-        <ul>
+    <div className="dashboard-container">
+      <h1 className="dashboard-title">Dashboard</h1>
+      <section className="dashboard-section">
+        <h2 className="section-title">Reset</h2>
+        <div className="section-list">
           {reset.map((entry, index) => (
-            <li key={entry.id || index}>
+            <p key={entry.id || index} className="section-item">
               {entry.title} : {entry.category}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       </section>
-      <section>
-        <h2>Habits</h2>
-        <ul>
+      <section className="dashboard-section">
+        <h2 className="section-title">Habits</h2>
+        <div className="section-list">
           {habit.map((entry, index) => (
-            <li key={entry.id || index}>
+            <p key={entry.id || index} className="section-item">
               {entry.name} : {entry.frequency}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       </section>
-      <section>
-        <h2>Goals</h2>
-        <ul>
+      <section className="dashboard-section">
+        <h2 className="section-title">Goals</h2>
+        <div className="section-list">
           {goal.map((entry, index) => (
-            <li key={entry.id || index}>
+            <p key={entry.id || index} className="section-item">
               {entry.title} : {entry.status}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       </section>
-      <section>
-        <h2>Budget</h2>
-        <ul>
+      <section className="dashboard-section">
+        <h2 className="section-title">Financial Plan</h2>
+        <div className="section-list">
           {budget.map((entry, index) => (
-            <li key={entry.id || index}>
+            <p key={entry.id || index} className="section-item">
               {entry.category} : {entry.amount}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       </section>
     </div>
   );

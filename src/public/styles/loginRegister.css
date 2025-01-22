@@ -29,6 +29,7 @@ body {
 .form-group textarea,
 .form-group select {
   width: 100%;
+  color: #ff61a6fd;
   padding: 12px;
   border: 1px solid #ffd1e8;
   border-radius: 8px;

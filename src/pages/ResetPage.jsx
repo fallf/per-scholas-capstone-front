@@ -119,7 +119,7 @@ function ResetPage() {
 
   const loaded = () => {
     return (
-      <ul className="entry-list">
+      <div className="entry-list">
         {reset.map((entry) => (
           <li key={entry._id} className="entry-item">
             <h4>{entry.title}</h4>
@@ -142,7 +142,7 @@ function ResetPage() {
             </button>
           </li>
         ))}
-      </ul>
+      </div>
     );
   };
 

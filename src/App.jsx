@@ -5,19 +5,22 @@ import BudgetPage from "./pages/BudgetPage";
 import DashboardPage from "./pages/DashboardPage";
 import GoalsPage from "./pages/GoalsPage";
 import HabitsPage from "./pages/HabitsPage";
-import ResetPage from "./pages/ResetPage"; // Import only once
+import ResetPage from "./pages/ResetPage";
 import AutoPage from "./pages/AutoPage";
+import { FiCamera } from "react-icons/fi";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState("Fatou");
+  const [user, setUser] = useState("Fatou"); // Initially no user is logged in
   return (
     <>
       {user ? (
         <>
           <Nav />
-          <h1 className="titlemainpage">Best version of you</h1>
-          <h2 className="helloToTheUser">Hi {user}</h2>
+          <h1 className="titlemainpage">
+            The Better You <FiCamera />{" "}
+          </h1>
+          <h2 className="helloToTheUser">Welcome {user} 🎀</h2>
           <Routes>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/budget" element={<BudgetPage />} />
