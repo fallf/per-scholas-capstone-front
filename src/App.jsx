@@ -11,7 +11,7 @@ import { FiCamera } from "react-icons/fi";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState("Fatou"); // Initially no user is logged in
+  const [user, setUser] = useState("fatou"); // Initially no user is logged in
   return (
     <>
       {user ? (

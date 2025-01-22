@@ -13,11 +13,11 @@ function GoalsPage() {
   });
 
   const LOCAL_URL = "http://localhost:5020";
-
+  const DEPLOY_URL = "https://best-you.onrender.com";
   const getGoal = async () => {
     console.log("getGoal called");
     try {
-      const response = await axios.get(`${LOCAL_URL}/api/goal`);
+      const response = await axios.get(`${DEPLOY_URL}/api/goal`);
       console.log("Response data:", response.data);
       setGoal(response.data);
     } catch (err) {
@@ -27,19 +27,20 @@ function GoalsPage() {
 
   const addGoal = async (event) => {
     event.preventDefault();
+    console.log("Submitting form data:", formData);
     try {
-      const response = await axios.post(`${LOCAL_URL}/api/goal`, formData);
+      const response = await axios.post(`${DEPLOY_URL}/api/goal`, formData);
       console.log("Goal added:", response.data);
       setGoal([...goal, response.data]);
       setFormData({ title: "", description: "", status: "Pending", due: "" });
     } catch (err) {
-      console.error("Error adding goal:", err);
+      console.error("Error adding goal:", err.response?.data || err.message);
     }
   };
 
   const deleteGoal = async (id) => {
     try {
-      await axios.delete(`${LOCAL_URL}/api/goal/${id}`);
+      await axios.delete(`${DEPLOY_URL}/api/goal/${id}`);
       console.log("Goal deleted with ID:", id);
       setGoal(goal.filter((entry) => entry._id !== id));
     } catch (err) {

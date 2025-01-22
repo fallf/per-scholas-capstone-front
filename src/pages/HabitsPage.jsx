@@ -14,10 +14,11 @@ function HabitsPage() {
   });
   const [editingHabitId, setEditingHabitId] = useState(null);
   const LOCAL_URL = "http://localhost:5020";
+  const DEPLOY_URL = "https://best-you.onrender.com";
 
   const fetchHabits = async () => {
     try {
-      const response = await axios.get(`${LOCAL_URL}/api/habit`);
+      const response = await axios.get(`${DEPLOY_URL}/api/habit`);
       setHabits(response.data);
     } catch (err) {
       console.error("Error fetching habits:", err);
@@ -29,7 +30,7 @@ function HabitsPage() {
     try {
       if (editingHabitId) {
         const response = await axios.put(
-          `${LOCAL_URL}/api/habit/${editingHabitId}`,
+          `${DEPLOY_URL}/api/habit/${editingHabitId}`,
           formHabit
         );
         setHabits(
@@ -38,7 +39,7 @@ function HabitsPage() {
           )
         );
       } else {
-        const response = await axios.post(`${LOCAL_URL}/api/habit`, formHabit);
+        const response = await axios.post(`${DEPLOY_URL}/api/habit`, formHabit);
         setHabits([...habits, response.data]);
       }
       resetForm();
@@ -49,7 +50,7 @@ function HabitsPage() {
 
   const deleteHabit = async (id) => {
     try {
-      await axios.delete(`${LOCAL_URL}/api/habit/${id}`);
+      await axios.delete(`${DEPLOY_URL}/api/habit/${id}`);
       setHabits(habits.filter((habit) => habit._id !== id));
     } catch (err) {
       console.error("Error deleting habit:", err);
@@ -58,7 +59,7 @@ function HabitsPage() {
 
   const toggleComplete = async (id, currentCompleted) => {
     try {
-      const response = await axios.patch(`${LOCAL_URL}/api/habit/${id}`, {
+      const response = await axios.patch(`${DEPLOY_URL}/api/habit/${id}`, {
         completed: !currentCompleted,
       });
       setHabits(

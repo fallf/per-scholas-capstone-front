@@ -10,7 +10,7 @@ Welcome to The Better You - Monthly Reset, a web application designed to help us
 
 - Dashboard: http://localhost:5173/
 
-- Budget Page: http://localhost:5173/budget
+- pending Budget Page: http://localhost:5173/budget
 
 - Goals Page: http://localhost:5173/goals
 

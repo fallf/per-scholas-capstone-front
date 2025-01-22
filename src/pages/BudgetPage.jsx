@@ -4,11 +4,12 @@ import axios from "axios";
 function BudgetPage() {
   const [budget, setBudget] = useState([]);
   const LOCAL_URL = "http://localhost:5020";
+  const DEPLOY_URL = "https://best-you.onrender.com";
 
   const getBudget = async () => {
     console.log("getBudget called");
     try {
-      const response = await axios.get(`${LOCAL_URL}/api/budget`);
+      const response = await axios.get(`${DEPLOY_URL}/api/budget`);
       console.log("Response data:", response.data);
       setBudget(response.data);
       console.log("State updated:", response.data);

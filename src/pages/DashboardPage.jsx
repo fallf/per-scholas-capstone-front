@@ -8,15 +8,15 @@ function DashboardPage() {
   const [goal, setGoal] = useState([]);
   const [budget, setBudget] = useState([]);
   const LOCAL_URL = "http://localhost:5020";
-
+  const DEPLOY_URL = "https://best-you.onrender.com";
   const fetchData = async () => {
     try {
       const [resetResponse, habitResponse, goalResponse, budgetResponse] =
         await Promise.all([
-          axios.get(`${LOCAL_URL}/api/reset`),
-          axios.get(`${LOCAL_URL}/api/habit`),
-          axios.get(`${LOCAL_URL}/api/goal`),
-          axios.get(`${LOCAL_URL}/api/budget`),
+          axios.get(`${DEPLOY_URL}/api/reset`),
+          axios.get(`${DEPLOY_URL}/api/habit`),
+          axios.get(`${DEPLOY_URL}/api/goal`),
+          axios.get(`${DEPLOY_URL}/api/budget`),
         ]);
 
       setReset(resetResponse.data);

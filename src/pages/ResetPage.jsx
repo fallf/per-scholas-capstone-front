@@ -13,6 +13,7 @@ function ResetPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [feedbackMessage, setFeedbackMessage] = useState(""); // Feedback state for messages
   const LOCAL_URL = "http://localhost:5020";
+  const DEPLOY_URL = "https://best-you.onrender.com";
   const [editingId, setEditingId] = useState(null); // Track which entry is being edited
 
   const handleMonthChange = (event) => {
@@ -49,10 +50,13 @@ function ResetPage() {
     try {
       // If editing an existing entry, send a PUT request, otherwise send POST
       if (editingId) {
-        await axios.put(`${LOCAL_URL}/api/reset/${editingId}`, updatedFormData);
+        await axios.put(
+          `${DEPLOY_URL}/api/reset/${editingId}`,
+          updatedFormData
+        );
         setFeedbackMessage("Reflection updated successfully!");
       } else {
-        await axios.post(`${LOCAL_URL}/api/reset`, updatedFormData);
+        await axios.post(`${DEPLOY_URL}/api/reset`, updatedFormData);
         setFeedbackMessage("Reflection saved successfully!");
       }
 
@@ -72,7 +76,7 @@ function ResetPage() {
 
   const getReset = async () => {
     try {
-      const response = await axios.get(`${LOCAL_URL}/api/reset`);
+      const response = await axios.get(`${DEPLOY_URL}/api/reset`);
       setReset(response.data);
       setIsLoading(false);
     } catch (err) {
@@ -96,7 +100,7 @@ function ResetPage() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${LOCAL_URL}/api/reset/${id}`);
+      await axios.delete(`${DEPLOY_URL}/api/reset/${id}`);
       setFeedbackMessage("Reflection deleted successfully!");
       getReset(); // Refresh entries after deletion
     } catch (err) {
